@@ -1,1 +1,14 @@
-<p>product works!</p>
+<table class="table">
+    <tr>
+        <th>Ürün Id</th>
+        <th>Kategori Id</th>
+        <th>Ürün Adı</th>
+        <th>Fiyatı</th>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td>{{product.productId}}</td>  
+        <td>{{product.categoryId}}</td>
+        <td>{{product.productName}}</td>
+        <td>{{product.unitPrice}}</td>
+    </tr>
+</table>
