@@ -4,11 +4,14 @@
         <th>Kategori Id</th>
         <th>Ürün Adı</th>
         <th>Fiyatı</th>
+        <th>Stok Sayısı</th>
     </tr>
     <tr *ngFor="let product of products">
         <td>{{product.productId}}</td>  
         <td>{{product.categoryId}}</td>
         <td>{{product.productName}}</td>
         <td>{{product.unitPrice}}</td>
+        <td>{{product.unitsInStock}}</td>
+
     </tr>
 </table>
