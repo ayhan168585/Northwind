@@ -12,6 +12,10 @@ import { Category } from '../../models/category';
 export class CategoryComponent implements OnInit {
   categories:Category[]=[]
   constructor(private categoryService:CategoryService){}
+  currentCategory:Category
+  // currentCategory:Category şeklinde kullanmak için tesconfig.json dosyasına "strict":"true"'den sonra
+  // "strictPropertyInitialization": false, eklemesi yapılır.
+
   
   ngOnInit(): void {
 this.getCategories()
@@ -20,6 +24,18 @@ this.getCategories()
 this.categoryService.getCategories().subscribe(response=>{
   this.categories=response.data
 })
+  }
+  setCurrentCategory(category:Category){
+   this.currentCategory=category
+  }
+
+  getCurrentCategoryClass(category:Category){
+   if(category==this.currentCategory){
+    return "list-group-item active"
+   }
+   else{
+    return "list-group-item"
+   }
   }
 
 
