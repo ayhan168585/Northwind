@@ -1,4 +1,4 @@
-<li *ngIf="cartItems.length>0" class="nav-item dropdown">
+<li *ngIf="cartItems.length > 0" class="nav-item dropdown">
   <a
     class="nav-link dropdown-toggle"
     href="#"
@@ -9,10 +9,17 @@
     Sepetim
   </a>
   <ul class="dropdown-menu">
-    <li  *ngFor="let cartItem of cartItems"  >
-      <a class="dropdown-item">{{
-        cartItem.product.productName
-      }} <span class="badge text-bg-secondary">{{cartItem.quantity}}</span></a>
+    <li *ngFor="let cartItem of cartItems">
+      <a class="dropdown-item"
+        >{{ cartItem.product.productName }}
+        <span class="badge text-bg-danger">{{ cartItem.quantity }}</span>
+        <span
+          (click)="removeFromCart(cartItem.product)"
+          class="badge text-bg-secondary"
+        >
+          Sil</span
+        ></a
+      >
     </li>
     <li><hr class="dropdown-divider" /></li>
     <li><a class="dropdown-item">Sepete git</a></li>
