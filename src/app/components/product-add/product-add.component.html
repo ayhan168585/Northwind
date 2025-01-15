@@ -1,0 +1,61 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5>Ürün Ekleme</h5></div>
+      <div class="card-body">
+        <form [formGroup]="productAddForm" ngForm="add()">
+          <div class="mb-3">
+            <label for="productName"><h6>Ürün Adı</h6></label>
+            <input
+              class="form-control"
+              type="text"
+              id="productName"
+              formControlName="productName"
+              placeholder="ürün adı giriniz"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="unitPrice"><h6>Fiyatı</h6></label>
+            <input
+              class="form-control"
+              type="number"
+              id="unitPrice"
+              formControlName="unitPrice"
+              placeholder="fiyatı giriniz"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="unitsInStock"><h6>Stok Adedi</h6></label>
+            <input
+              class="form-control"
+              type="number"
+              id="unitsInStock"
+              formControlName="unitsInStock"
+              placeholder="stok giriniz"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="categoryId"><h6>Kategori</h6></label>
+            <select
+              class="form-select"
+              aria-label="Default select example"
+              id="categoryId"
+              formControlName="categoryId"             
+            >
+            <option selected>
+             Kategori seçiniz
+            </option>
+              <option *ngFor="let category of categories" [ngValue]="category.categoryId">
+                {{ category.categoryName }}
+              </option>
+            </select>
+          </div>
+         
+        </form>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-fill btn-primary" (click)="add()">Kaydet</button>
+      </div>
+    </div>
+  </div>
+</div>
