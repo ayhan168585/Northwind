@@ -26,7 +26,7 @@ export class ProductAddComponent implements OnInit {
     private formBuilder: FormBuilder,
     private categoryService: CategoryService,
     private productService: ProductService,
-    private toastrService:ToastrService
+    private toastrService: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -48,19 +48,33 @@ export class ProductAddComponent implements OnInit {
     });
   }
   add() {
-    if(this.productAddForm.valid){
-      let productModel = Object.assign({},this.productAddForm.value)
-      this.productService.add(productModel).subscribe(response=>{
-        productModel=response
-      },responseError=>{
-        this.toastrService.error("Bu ürün eklenemez",responseError.error)
-      })
-     
-    
-      this.toastrService.success("Bir ürün eklendi",productModel.productName)
-    }else{
-      this.toastrService.error("Ürün ekleme sırasında hata oluştu")
+    if (this.productAddForm.valid) {
+      let productModel = Object.assign({}, this.productAddForm.value);
+      this.productService.add(productModel).subscribe(
+        (response) => {
+          productModel = response;
+          this.toastrService.success(
+            'Bir ürün eklendi',
+            productModel.productName
+          );
+        },
+        (responseError) => {
+          if (responseError.error.ValidationErrors.length > 0) {
+            for (
+              let i = 0;
+              i < responseError.error.ValidationErrors.length;
+              i++
+            ) {
+              this.toastrService.error(
+                responseError.error.ValidationErrors[i].ErrorMessage,
+               "Doğrulama Hatası"
+              );
+            }
+          }
+        }
+      );
+    } else {
+      this.toastrService.error('Ürün ekleme sırasında hata oluştu');
     }
-  
   }
 }
