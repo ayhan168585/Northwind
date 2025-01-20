@@ -59,7 +59,9 @@ export class ProductAddComponent implements OnInit {
           );
         },
         (responseError) => {
+            
           if (responseError.error.ValidationErrors.length > 0) {
+           
             for (
               let i = 0;
               i < responseError.error.ValidationErrors.length;
